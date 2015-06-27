@@ -78,7 +78,7 @@ define([], function() {
 				fns = [];
 				l[type] = fns;
 			}
-			fns.push({fn:fn, callback: isCallback, origin:origin || $.pm.origin});
+			fns.push({fn:fn, callback: isCallback, origin:origin || pm.origin});
 		},
 
 		unbind: function(type, fn) {
@@ -158,7 +158,6 @@ define([], function() {
 		},
 
 		_dispatch: function(e) {
-			//console.log("$.pm.dispatch", e, this);
 			try {
 				var msg = JSON.parse(e.data);
 			}
@@ -285,7 +284,7 @@ define([], function() {
 							pm.hash._dispatch(hash.substring(pm.hash._regex_len));
 						}
 					}
-				}, $.pm.poll || 200);
+				}, pm.poll || 200);
 				pm.data("polling.postmessage", 1);
 			}
 		},
@@ -372,8 +371,6 @@ define([], function() {
 
 	};
 
-	return function(options) {
-		pm.send(options);
-	};
+	return pm;
 
 });
